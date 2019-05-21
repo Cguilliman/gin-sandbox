@@ -5,10 +5,10 @@ import (
 
 	"gopkg.in/gin-gonic/gin.v1"
 
-	"github.com/jinzhu/gorm"
 	"github.com/Cguilliman/gin-sandbox/articles"
 	"github.com/Cguilliman/gin-sandbox/common"
 	"github.com/Cguilliman/gin-sandbox/users"
+	"github.com/jinzhu/gorm"
 )
 
 func Migrate(db *gorm.DB) {

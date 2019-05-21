@@ -2,8 +2,8 @@ package users
 
 import (
 	"errors"
-	"github.com/jinzhu/gorm"
 	"github.com/Cguilliman/gin-sandbox/common"
+	"github.com/jinzhu/gorm"
 	"golang.org/x/crypto/bcrypt"
 )
 

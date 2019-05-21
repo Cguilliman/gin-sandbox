@@ -2,9 +2,9 @@ package articles
 
 import (
 	_ "fmt"
-	"github.com/jinzhu/gorm"
 	"github.com/Cguilliman/gin-sandbox/common"
 	"github.com/Cguilliman/gin-sandbox/users"
+	"github.com/jinzhu/gorm"
 	"strconv"
 )
 

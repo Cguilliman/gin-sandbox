@@ -1,8 +1,8 @@
 package articles
 
 import (
-	"github.com/gosimple/slug"
 	"github.com/Cguilliman/gin-sandbox/users"
+	"github.com/gosimple/slug"
 	"gopkg.in/gin-gonic/gin.v1"
 )
 

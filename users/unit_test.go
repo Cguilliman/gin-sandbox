@@ -6,8 +6,8 @@ import (
 
 	"bytes"
 	"fmt"
-	"github.com/jinzhu/gorm"
 	"github.com/Cguilliman/gin-sandbox/common"
+	"github.com/jinzhu/gorm"
 	"gopkg.in/gin-gonic/gin.v1"
 	"net/http"
 	"net/http/httptest"
