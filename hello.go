@@ -3,32 +3,37 @@ package main
 import (
 	"fmt"
 
+	"github.com/jinzhu/gorm"
 	"gopkg.in/gin-gonic/gin.v1"
 
 	"github.com/Cguilliman/gin-sandbox/articles"
+	"github.com/Cguilliman/gin-sandbox/chat"
 	"github.com/Cguilliman/gin-sandbox/common"
 	"github.com/Cguilliman/gin-sandbox/users"
-	"github.com/jinzhu/gorm"
 )
 
-func Migrate(db *gorm.DB) {
+func Migrate(db *gorm.DB) { // TODO: remove migration to another place
 	users.AutoMigrate()
+
 	db.AutoMigrate(&articles.ArticleModel{})
 	db.AutoMigrate(&articles.TagModel{})
 	db.AutoMigrate(&articles.FavoriteModel{})
 	db.AutoMigrate(&articles.ArticleUserModel{})
 	db.AutoMigrate(&articles.CommentModel{})
+
+	db.AutoMigrate(&chat.RoomModel{})
+	db.AutoMigrate(&chat.RoomUserModel{})
+	db.AutoMigrate(&chat.MessageModel{})
 }
 
 func main() {
-
-	db := common.Init()
+	db := common.Init() // initialize database
 	Migrate(db)
 	defer db.Close()
 
-	r := gin.Default()
+	engine := gin.Default()
 
-	v1 := r.Group("/api")
+	v1 := engine.Group("/api") // TODO: remove routing registration to another place
 	users.UsersRegister(v1.Group("/users"))
 	v1.Use(users.AuthMiddleware(false))
 	articles.ArticlesAnonymousRegister(v1.Group("/articles"))
@@ -40,7 +45,7 @@ func main() {
 
 	articles.ArticlesRegister(v1.Group("/articles"))
 
-	testAuth := r.Group("/api/ping")
+	testAuth := engine.Group("/api/ping")
 
 	testAuth.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
@@ -48,6 +53,12 @@ func main() {
 		})
 	})
 
+	// testDbWorking(db)
+
+	engine.Run("0.0.0.0:9000") // listen and serve on 0.0.0.0:8080
+}
+
+func testDbWorking(db *gorm.DB) {
 	// test 1 to 1
 	tx1 := db.Begin()
 	userA := users.UserModel{
@@ -60,14 +71,12 @@ func main() {
 	tx1.Commit()
 	fmt.Println(userA)
 
-	//db.Save(&ArticleUserModel{
-	//    UserModelID:userA.ID,
-	//})
-	//var userAA ArticleUserModel
-	//db.Where(&ArticleUserModel{
-	//    UserModelID:userA.ID,
-	//}).First(&userAA)
-	//fmt.Println(userAA)
-
-	r.Run("0.0.0.0:9000") // listen and serve on 0.0.0.0:8080
+	db.Save(&articles.ArticleUserModel{
+		UserModelID: userA.ID,
+	})
+	var userAA articles.ArticleUserModel
+	db.Where(&articles.ArticleUserModel{
+		UserModelID: userA.ID,
+	}).First(&userAA)
+	fmt.Println(userAA)
 }
