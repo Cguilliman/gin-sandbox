@@ -4,7 +4,7 @@
 ## Start
 
 0. Install golang.
-1. Clone in current repository in `~/go/src/github.com/cguilliman/`.
+1. Clone in current repository in `~/go/src/github.com/Cguilliman/`.
 2. Install global packager 
 ```
 go get -u github.com/kardianos/govendor

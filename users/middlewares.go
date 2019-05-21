@@ -3,7 +3,7 @@ package users
 import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/dgrijalva/jwt-go/request"
-	"github.com/cguilliman/gin-sandbox/common"
+	"github.com/Cguilliman/gin-sandbox/common"
 	"gopkg.in/gin-gonic/gin.v1"
 	"net/http"
 	"strings"
