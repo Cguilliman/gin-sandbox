@@ -7,7 +7,7 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/jinzhu/gorm"
-	"github.com/wangzitian0/golang-gin-starter-kit/common"
+	"github.com/Cguilliman/gin-sandbox/common"
 	"gopkg.in/gin-gonic/gin.v1"
 	"net/http"
 	"net/http/httptest"
@@ -123,16 +123,16 @@ var unauthRequestTests = []struct {
 		},
 		"/users/",
 		"POST",
-		`{"user":{"username": "wangzitian0","email": "wzt@gg.cn","password": "jakejxke"}}`,
+		`{"user":{"username": "Cguilliman","email": "wzt@gg.cn","password": "jakejxke"}}`,
 		http.StatusCreated,
-		`{"user":{"username":"wangzitian0","email":"wzt@gg.cn","bio":"","image":null,"token":"([a-zA-Z0-9-_.]{115})"}}`,
+		`{"user":{"username":"Cguilliman","email": "wzt@gg.cn","bio":"","image":null,"token":"([a-zA-Z0-9-_.]{115})"}}`,
 		"valid data and should return StatusCreated",
 	},
 	{
 		func(req *http.Request) {},
 		"/users/",
 		"POST",
-		`{"user":{"username": "wangzitian0","email": "wzt@gg.cn","password": "jakejxke"}}`,
+		`{"user":{"username": "Cguilliman","email": "wzt@gg.cn","password": "jakejxke"}}`,
 		http.StatusUnprocessableEntity,
 		`{"errors":{"database":"UNIQUE constraint failed: user_models.email"}}`,
 		"duplicated data and should return StatusUnprocessableEntity",
@@ -150,7 +150,7 @@ var unauthRequestTests = []struct {
 		func(req *http.Request) {},
 		"/users/",
 		"POST",
-		`{"user":{"username": "wangzitian0","email": "wzt@gg.cn","password": "j"}}`,
+		`{"user":{"username": "Cguilliman","email": "wzt@gg.cn","password": "j"}}`,
 		http.StatusUnprocessableEntity,
 		`{"errors":{"Password":"{min: 8}"}}`,
 		"too short password should return error",
@@ -159,7 +159,7 @@ var unauthRequestTests = []struct {
 		func(req *http.Request) {},
 		"/users/",
 		"POST",
-		`{"user":{"username": "wangzitian0","email": "wztgg.cn","password": "jakejxke"}}`,
+		`{"user":{"username": "Cguilliman","email": "wzt@gg.cn","password": "jakejxke"}}`,
 		http.StatusUnprocessableEntity,
 		`{"errors":{"Email":"{key: email}"}}`,
 		"email invalid should return error",
@@ -349,7 +349,7 @@ var unauthRequestTests = []struct {
 		},
 		"/user/",
 		"PUT",
-		`{"user":{"username": "wangzitian0","email": "wzt@gg.cn","password": "jakejxke"}}`,
+		`{"user":{"username": "Cguilliman","email": "wzt@gg.cn","password": "jakejxke"}}`,
 		http.StatusUnprocessableEntity,
 		`{"errors":{"database":"UNIQUE constraint failed: user_models.email"}}`,
 		"cheat validator and test database connecting error for user update",

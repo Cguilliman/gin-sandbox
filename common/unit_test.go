@@ -94,25 +94,25 @@ func TestNewValidatorError(t *testing.T) {
 		msg            string
 	}{
 		{
-			`{"username": "wangzitian0","password": "0123456789"}`,
+			`{"username": "cguilliman","password": "0123456789"}`,
 			http.StatusOK,
 			`{"status":"you are logged in"}`,
 			"valid data and should return StatusCreated",
 		},
 		{
-			`{"username": "wangzitian0","password": "01234567866"}`,
+			`{"username": "cguilliman","password": "01234567866"}`,
 			http.StatusUnauthorized,
 			`{"errors":{"user":"wrong username or password"}}`,
 			"wrong login status should return StatusUnauthorized",
 		},
 		{
-			`{"username": "wangzitian0","password": "0122"}`,
+			`{"username": "cguilliman","password": "0122"}`,
 			http.StatusUnprocessableEntity,
 			`{"errors":{"Password":"{min: 8}"}}`,
 			"invalid password of too short and should return StatusUnprocessableEntity",
 		},
 		{
-			`{"username": "_wangzitian0","password": "0123456789"}`,
+			`{"username": "_cguilliman","password": "0123456789"}`,
 			http.StatusUnprocessableEntity,
 			`{"errors":{"Username":"{key: alphanum}"}}`,
 			"invalid username of non alphanum and should return StatusUnprocessableEntity",
@@ -124,7 +124,7 @@ func TestNewValidatorError(t *testing.T) {
 	r.POST("/login", func(c *gin.Context) {
 		var json Login
 		if err := Bind(c, &json); err == nil {
-			if json.Username == "wangzitian0" && json.Password == "0123456789" {
+			if json.Username == "cguilliman" && json.Password == "0123456789" {
 				c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
 			} else {
 				c.JSON(http.StatusUnauthorized, NewError("user", errors.New("wrong username or password")))

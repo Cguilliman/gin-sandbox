@@ -3,7 +3,7 @@ package users
 import (
 	"errors"
 	"github.com/jinzhu/gorm"
-	"github.com/wangzitian0/golang-gin-starter-kit/common"
+	"github.com/Cguilliman/gin-sandbox/common"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -88,7 +88,7 @@ func SaveOne(data interface{}) error {
 }
 
 // You could update properties of an UserModel to database returning with error info.
-//  err := db.Model(userModel).Update(UserModel{Username: "wangzitian0"}).Error
+//  err := db.Model(userModel).Update(UserModel{Username: "Cguilliman"}.Error
 func (model *UserModel) Update(data interface{}) error {
 	db := common.GetDB()
 	err := db.Model(model).Update(data).Error

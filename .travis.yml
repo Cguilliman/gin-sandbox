@@ -5,13 +5,13 @@ go:
   - 1.8.x
   - master
 
-go_import_path: github.com/wangzitian0/golang-gin-starter-kit
+go_import_path: github.com/Cguilliman/gin-sandbox
 
 services:
   - sqlite3
 
 install:
-  - go get -u github.com/wangzitian0/golang-gin-starter-kit
+  - go get -u github.com/Cguilliman/gin-sandbox
   - go get -u github.com/kardianos/govendor
   - govendor sync
 script:

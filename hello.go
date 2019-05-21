@@ -6,9 +6,9 @@ import (
 	"gopkg.in/gin-gonic/gin.v1"
 
 	"github.com/jinzhu/gorm"
-	"github.com/wangzitian0/golang-gin-starter-kit/articles"
-	"github.com/wangzitian0/golang-gin-starter-kit/common"
-	"github.com/wangzitian0/golang-gin-starter-kit/users"
+	"github.com/Cguilliman/gin-sandbox/articles"
+	"github.com/Cguilliman/gin-sandbox/common"
+	"github.com/Cguilliman/gin-sandbox/users"
 )
 
 func Migrate(db *gorm.DB) {
@@ -69,5 +69,5 @@ func main() {
 	//}).First(&userAA)
 	//fmt.Println(userAA)
 
-	r.Run() // listen and serve on 0.0.0.0:8080
+	r.Run("0.0.0.0:9000") // listen and serve on 0.0.0.0:8080
 }

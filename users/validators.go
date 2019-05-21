@@ -1,7 +1,7 @@
 package users
 
 import (
-	"github.com/wangzitian0/golang-gin-starter-kit/common"
+	"github.com/Cguilliman/gin-sandbox/common"
 	"gopkg.in/gin-gonic/gin.v1"
 )
 
