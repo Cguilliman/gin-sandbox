@@ -6,7 +6,7 @@ import (
 	"github.com/Cguilliman/gin-sandbox/articles"
 	"github.com/Cguilliman/gin-sandbox/users"
 	// "github.com/Cguilliman/gin-sandbox/common"
-	"github.com/Cguilliman/gin-sandbox/chat"
+	chat "github.com/Cguilliman/gin-sandbox/chat/routers"
 )
 
 func initRoutings(engine *gin.Engine) {

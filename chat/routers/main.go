@@ -1,4 +1,4 @@
-package chat
+package routers
 
 import "gopkg.in/gin-gonic/gin.v1"
 

@@ -1,4 +1,4 @@
-package chat
+package routers
 
 import (
     "errors"
@@ -7,11 +7,13 @@ import (
     "gopkg.in/gin-gonic/gin.v1"
     
     "github.com/Cguilliman/gin-sandbox/common"
+    "github.com/Cguilliman/gin-sandbox/chat"
+    "github.com/Cguilliman/gin-sandbox/chat/serializers"
 )
 
 func RoomRender(c *gin.Context) {
     // createRoom()
-    rooms, err := AllRooms()
+    rooms, err := chat.AllRooms()
     if err != nil {
         c.JSON(
             http.StatusNotFound,
@@ -19,7 +21,7 @@ func RoomRender(c *gin.Context) {
         )
         return 
     }
-    serializer := RoomsSerializer{c, rooms}
+    serializer := serializers.RoomsSerializer{c, rooms}
     c.HTML(
         http.StatusOK, "rooms.tmpl",
         gin.H{"rooms": serializer.Response()},
@@ -28,7 +30,7 @@ func RoomRender(c *gin.Context) {
 
 func ChatRender(c *gin.Context) {
     id := c.Param("id")
-    room, err := GetRoom(id)
+    room, err := chat.GetRoom(id)
     if err != nil {
         c.JSON(
             http.StatusNotFound,
@@ -36,7 +38,7 @@ func ChatRender(c *gin.Context) {
         )
         return 
     }
-    serializer := RoomSerializer{c, room}
+    serializer := serializers.RoomSerializer{c, room}
     c.HTML(
         http.StatusOK, "chat.tmpl",
         gin.H{"chat": serializer.Response()},
