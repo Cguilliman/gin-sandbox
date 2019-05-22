@@ -1,7 +1,8 @@
 package chat
 
 import (
-	// "github.com/Cguilliman/gin-sandbox/common"
+	// "gopkg.in/gin-gonic/gin.v1"
+	"github.com/Cguilliman/gin-sandbox/common"
 	"github.com/Cguilliman/gin-sandbox/users"
 	"github.com/jinzhu/gorm"
 )
@@ -16,8 +17,8 @@ type RoomModel struct {
 
 type RoomUserModel struct {
 	gorm.Model
-	UserID uint
 	User   users.UserModel
+	UserID uint
 	Rooms  []RoomModel `gorm:"many2many:room_users;"`
 }
 
@@ -30,4 +31,18 @@ type MessageModel struct {
 	ToUserID   uint
 	Room       RoomModel
 	RoomID     uint
+}
+
+func AllRooms() ([]RoomModel, error) {
+	db := common.GetDB()
+	var models []RoomModel
+	err := db.Find(&models).Error
+	return models, err
+}
+
+func GetRoom(id string) (RoomModel, error) {
+	db := common.GetDB()
+	var model RoomModel
+	err := db.Where("id = ?", id).First(&model).Error
+	return model, err
 }

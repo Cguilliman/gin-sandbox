@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Rooms
+    </title>
+</head>
+<body>
+    <h1>Choose rooms</h1>
+    <p>{{ .rooms }}</p>
+    <ul>
+        {{ range .rooms }}
+        <li>
+            <a href="">{{ .Title }} {{ .ID }} {{ .Slug }}</a>
+        </li>
+        {{ end }}
+    </ul>
+</body>
+</html>

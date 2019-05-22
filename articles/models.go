@@ -48,7 +48,7 @@ type CommentModel struct {
 	ArticleID uint
 	Author    ArticleUserModel
 	AuthorID  uint
-	Body      string `gorm:"size:2048"`
+	Body      string           `gorm:"size:2048"`
 }
 
 func GetArticleUserModel(userModel users.UserModel) ArticleUserModel {
